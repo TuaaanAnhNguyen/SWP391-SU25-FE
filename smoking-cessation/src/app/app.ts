@@ -13,6 +13,8 @@ export class App {
   protected title = 'smoking-cessation';
   private router = inject(Router);
 
+  constructor() {}
+
   showHeader() {
     return !['/login', '/signup'].includes(this.router.url);
   }
