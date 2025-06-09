@@ -3,7 +3,7 @@
     <h1 class="site-title">Smoke-Free Journey</h1>
     <nav class="main-nav">
       <a [routerLink]="['/homepage']" class="nav-link">Home</a>
-      <a *ngIf="isAdmin" [routerLink]="['/dashboard']" class="nav-link">Dashboard</a>
+      <a *ngIf="isAdmin" [routerLink]="['/admin-dashboard']" class="nav-link">Dashboard</a>
       <a *ngIf="!isLoggedIn" [routerLink]="['/login']" class="nav-link">Login</a>
       <a *ngIf="isLoggedIn" href="#" class="nav-link" (click)="logout($event)">Logout</a>
     </nav>

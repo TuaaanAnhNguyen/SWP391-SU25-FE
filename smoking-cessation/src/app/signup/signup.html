@@ -78,6 +78,18 @@
           formControlName="confirmPassword"
         />
       </div>
+      <div class="form-group">
+        <label for="role" class="form-label">Role</label>
+        <select id="role" class="form-input" formControlName="role">
+          <option value="member">Member</option>
+          <option value="coach">Coach</option>
+          <option value="staff">Staff</option>
+          <option value="admin">Admin</option>
+        </select>
+        <p class="prompt-text-small" style="margin-top: 0.25rem;">
+          For testing purpose only
+        </p>
+      </div>
       <button type="submit" class="button-primary">Sign Up</button>
       <div *ngIf="errorMessage" class="prompt-text" style="color: red">
         {{ errorMessage }}
