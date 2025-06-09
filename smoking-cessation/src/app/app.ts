@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet, Router } from '@angular/router';
 import { Header } from "./header/header";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header],
+  imports: [RouterOutlet, Header, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -16,6 +17,6 @@ export class App {
   constructor() {}
 
   showHeader() {
-    return !['/login', '/signup'].includes(this.router.url);
+    return !['/login', '/signup', '/admin-dashboard'].includes(this.router.url);
   }
 }

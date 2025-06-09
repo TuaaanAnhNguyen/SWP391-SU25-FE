@@ -6,6 +6,7 @@ export const routes: Routes = [
     { path: 'signup', loadComponent: () => import('./signup/signup').then(m => m.Signup) },
     { path: 'homepage', loadComponent: () => import('./homepage/homepage').then(m => m.Homepage) },
     { path: 'blog', loadComponent: () => import('./blog/blog').then(m => m.Blog) },
+    { path: 'admin-dashboard', loadComponent: () => import('./admin-dashboard/admin-dashboard').then(m => m.AdminDashboard) },
     { path: '', redirectTo: '/homepage', pathMatch: 'full' },
 ];
 
