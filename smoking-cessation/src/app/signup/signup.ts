@@ -18,12 +18,11 @@ export class Signup {
   constructor(private fb: FormBuilder) {
     this.signupForm = this.fb.group({
       fullName: ['', Validators.required],
-      dob: ['', Validators.required],
+      dob: ['', Validators.required], // changed from ageDoB to dob
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
-      role: ['member', Validators.required] // default to 'member'
+      confirmPassword: ['', Validators.required]
     });
   }
 
@@ -45,7 +44,7 @@ export class Signup {
 
   onSignup() {
     if (this.signupForm.valid) {
-      const { fullName, dob, username, email, password, confirmPassword, role } = this.signupForm.value;
+      const { fullName, dob, username, email, password, confirmPassword } = this.signupForm.value;
       if (password !== confirmPassword) {
         this.errorMessage = 'Passwords do not match.';
         return;
@@ -61,7 +60,7 @@ export class Signup {
       }
       
       // Add new user
-      users.push({ fullName, dob, username, email, password, role });
+      users.push({ fullName, dob, username, email, password });
       localStorage.setItem('users', JSON.stringify(users));
       this.errorMessage = 'Signup successful! You can now login.';
       this.signupForm.reset();

@@ -1,21 +1,12 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import { Header } from "./header/header";
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, CommonModule],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected title = 'smoking-cessation';
-  private router = inject(Router);
-
-  constructor() {}
-
-  showHeader() {
-    return !['/login', '/signup'].includes(this.router.url);
-  }
 }

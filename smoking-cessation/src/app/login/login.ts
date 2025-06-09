@@ -32,7 +32,6 @@ export class Login {
       const user = users.find((u: any) => u.email === email && u.password === password);
       if (user) {
         this.errorMessage = '';
-        localStorage.setItem('currentUser', JSON.stringify(user));
         this.router.navigate(['/homepage']);
         
       } else this.errorMessage = 'Invalid email or password.';

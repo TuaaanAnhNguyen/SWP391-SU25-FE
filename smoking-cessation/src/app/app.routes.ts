@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { Login } from './login/login';
+import { Signup } from './signup/signup';
+import { Homepage } from './homepage/homepage';
 
 export const routes: Routes = [
-    { path: 'login', loadComponent: () => import('./login/login').then(m => m.Login) },
-    { path: 'signup', loadComponent: () => import('./signup/signup').then(m => m.Signup) },
-    { path: 'homepage', loadComponent: () => import('./homepage/homepage').then(m => m.Homepage) },
-    { path: 'blog', loadComponent: () => import('./blog/blog').then(m => m.Blog) },
-    { path: 'dashboard', loadComponent: () => import('./admin-dashboard/admin-dashboard').then(m => m.AdminDashboard) },
+    { path: 'login', component: Login},
+    { path: 'signup', component: Signup},
+    { path: 'homepage', component: Homepage },
+    {path: 'blog', loadComponent: () => import('./blog/blog').then(m => m.Blog)},
     { path: '', redirectTo: '/homepage', pathMatch: 'full' },
 ];
 
