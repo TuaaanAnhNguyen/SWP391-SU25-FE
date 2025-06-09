@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './homepage.css'
 })
 export class Homepage implements AfterViewInit {
+  currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+
   ngAfterViewInit() {
     const sliderWrapper = document.querySelector('.slider-wrapper') as HTMLElement;
     const benefitCards = document.querySelectorAll('.benefit-card');

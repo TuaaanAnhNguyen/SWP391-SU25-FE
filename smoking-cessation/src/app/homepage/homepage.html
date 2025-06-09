@@ -1,18 +1,12 @@
 <div class="homepage-body">
-  <header class="main-header">
-    <div class="container header-content">
-      <h1 class="site-title">Smoke-Free Journey</h1>
-      <nav class="main-nav">
-        <a [routerLink]="['/homepage']" class="nav-link">Home</a>
-        <a href="#community" class="nav-link">Blogs</a>
-        <a [routerLink]="['/login']" class="nav-link">Login</a>
-      </nav>
-    </div>
-  </header>
-
   <main class="container main-content" id="home">
     <section class="hero-section">
-      <h2 class="hero-title">Take Your First Step Towards a Healthier Life</h2>
+      <h2 class="hero-title">
+        Take Your First Step Towards a Healthier Life
+        <span *ngIf="currentUser" class="welcome-message">
+          Welcome, {{ currentUser.username }} - {{ currentUser.role }}!
+        </span>
+      </h2>
       <p class="hero-subtitle">
         We're here to support you on your journey to quit smoking. Let's begin!
       </p>
@@ -132,26 +126,6 @@
             Connect with others on the same journey and find support.
           </p>
           <a href="#" class="text-link">Join the Community</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="login-section" class="login-register-section">
-      <h2 class="section-title">Login / Register</h2>
-      <div class="login-register-grid">
-        <div class="login-register-card">
-          <h3 class="login-register-title">Login</h3>
-          <p class="login-register-description">
-            Already have an account? Log in here.
-          </p>
-          <a [routerLink]="['/login']" class="text-link">Login</a>
-        </div>
-        <div class="login-register-card">
-          <h3 class="login-register-title">Register</h3>
-          <p class="login-register-description">
-            New here? Create an account to get started.
-          </p>
-          <a [routerLink]="['/signup']" class="text-link">Register</a>
         </div>
       </div>
     </section>
