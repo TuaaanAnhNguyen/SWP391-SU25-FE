@@ -8,62 +8,50 @@
           <p>Home</p>
         </a>
       </li>
-      <li class="sidebar-menu-item" id="user-list-item">
-        <img src="assets/icon/admin/user-icon.png" alt="user-icon" />
-        <p>Users</p>
-        <div class="dropdown-arrow"></div>
-        <ul class="dropdown-menu">
-          <li class="dropdown-menu-item">
+      <!-- Example sidebar dropdown for "Users" -->
+      <li class="sidebar-menu-item" id="user-list-item" [class.open]="userDropdownOpen"
+        (click)="toggleUserDropdown($event)">
+        <span>Users</span>
+        <ul class="dropdown-menu" *ngIf="userDropdownOpen">
+          <li class="dropdown-menu-item" (click)="closeUserDropdown()">
             <a [routerLink]="['/dashboard', 'members']">Members</a>
           </li>
-          <li class="dropdown-menu-item">
+          <li class="dropdown-menu-item" (click)="closeUserDropdown()">
             <a [routerLink]="['/dashboard', 'coaches']">Coaches</a>
           </li>
-          <li class="dropdown-menu-item">
+          <li class="dropdown-menu-item" (click)="closeUserDropdown()">
             <a [routerLink]="['/dashboard', 'staffs']">Staffs</a>
           </li>
-          <li class="dropdown-menu-item">
+          <li class="dropdown-menu-item" (click)="closeUserDropdown()">
             <a [routerLink]="['/dashboard', 'admins']">Admins</a>
           </li>
         </ul>
       </li>
       <li class="sidebar-menu-item">
         <a [routerLink]="['/dashboard', 'notifications']">
-          <img
-            src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/bell.svg"
-            alt="notifications-icon"
-            class="icon-svg"
-          />
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/bell.svg" alt="notifications-icon"
+            class="icon-svg" />
           <p>Notifications</p>
         </a>
       </li>
       <li class="sidebar-menu-item">
         <a [routerLink]="['/dashboard', 'feedback']">
-          <img
-            src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/message-square.svg"
-            alt="feedback-icon"
-            class="icon-svg"
-          />
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/message-square.svg" alt="feedback-icon"
+            class="icon-svg" />
           <p>Feedback</p>
         </a>
       </li>
       <li class="sidebar-menu-item">
         <a [routerLink]="['/dashboard', 'membership']">
-          <img
-            src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/credit-card.svg"
-            alt="membership-icon"
-            class="icon-svg"
-          />
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/credit-card.svg" alt="membership-icon"
+            class="icon-svg" />
           <p>Membership</p>
         </a>
       </li>
       <li class="sidebar-menu-item sidebar-bottom-item">
         <a [routerLink]="['/login']">
-          <img
-            src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/log-out.svg"
-            alt="logout-icon"
-            class="icon-svg"
-          />
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/log-out.svg" alt="logout-icon"
+            class="icon-svg" />
           <p>Logout</p>
         </a>
       </li>

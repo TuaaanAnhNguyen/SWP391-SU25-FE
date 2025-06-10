@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink, Routes, Router } from '@angular/router';
 
 export const AdminDashboardRoutes: Routes = [
@@ -31,4 +31,20 @@ export class AdminDashboard {
     { title: 'Total Community Posts', value: 'N/A' },
     { title: 'New Registrations (This Month)', value: 'N/A' },
   ];
+
+  userDropdownOpen = false;
+
+  toggleUserDropdown(event: Event) {
+    event.stopPropagation();
+    this.userDropdownOpen = !this.userDropdownOpen;
+  }
+
+  closeUserDropdown() {
+    this.userDropdownOpen = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    this.userDropdownOpen = false;
+  }
 }
