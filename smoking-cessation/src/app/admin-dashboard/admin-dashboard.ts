@@ -1,6 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Routes, Router } from '@angular/router';
+
+export const AdminDashboardRoutes: Routes = [
+  {
+    path: '',
+    loadComponent: () => import('./admin-dashboard').then(m => m.AdminDashboard),
+    children: [
+      {
+        path: 'members',
+        loadComponent: () => import('./members/admin-members').then(m => m.AdminMembers)
+      },
+    ]
+  }
+];
 
 @Component({
   selector: 'app-admin-dashboard',
