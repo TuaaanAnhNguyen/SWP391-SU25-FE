@@ -18,7 +18,7 @@ export class Signup {
   constructor(private fb: FormBuilder) {
     this.signupForm = this.fb.group({
       fullName: ['', Validators.required],
-      dob: ['', Validators.required],
+      //dob: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -27,25 +27,25 @@ export class Signup {
     });
   }
 
-  calculateAge() {
-    const dobValue = this.signupForm.get('dob')?.value;
-    if (dobValue) {
-      const today = new Date();
-      const dob = new Date(dobValue);
-      let age = today.getFullYear() - dob.getFullYear();
-      const m = today.getMonth() - dob.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-        age--;
-      }
-      this.age = age >= 0 ? age : '';
-    } else {
-      this.age = '';
-    }
-  }
+  // calculateAge() {
+  //   const dobValue = this.signupForm.get('dob')?.value;
+  //   if (dobValue) {
+  //     const today = new Date();
+  //     const dob = new Date(dobValue);
+  //     let age = today.getFullYear() - dob.getFullYear();
+  //     const m = today.getMonth() - dob.getMonth();
+  //     if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+  //       age--;
+  //     }
+  //     this.age = age >= 0 ? age : '';
+  //   } else {
+  //     this.age = '';
+  //   }
+  // }
 
   onSignup() {
     if (this.signupForm.valid) {
-      const { fullName, dob, username, email, password, confirmPassword, role } = this.signupForm.value;
+      const { fullName, username, email, password, confirmPassword, role } = this.signupForm.value;
       if (password !== confirmPassword) {
         this.errorMessage = 'Passwords do not match.';
         return;
@@ -61,7 +61,7 @@ export class Signup {
       }
       
       // Add new user
-      users.push({ fullName, dob, username, email, password, role });
+      users.push({ fullName, username, email, password, role });
       localStorage.setItem('users', JSON.stringify(users));
       this.errorMessage = 'Signup successful! You can now login.';
       this.signupForm.reset();

@@ -1,11 +1,11 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet, Router } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css',
 })
@@ -26,19 +26,5 @@ export class AdminDashboard {
 
   get isDashboardRoot(): boolean {
     return /^\/admin-dashboard\/?$/.test(this.router.url); //get exact url of admin-dashboard, no children
-  }
-
-  toggleUserDropdown(event: Event) {
-    event.stopPropagation();
-    this.userDropdownOpen = !this.userDropdownOpen;
-  }
-
-  closeUserDropdown() {
-    this.userDropdownOpen = false;
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: Event) {
-    this.userDropdownOpen = false;
   }
 }
