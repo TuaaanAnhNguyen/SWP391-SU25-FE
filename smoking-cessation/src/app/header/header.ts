@@ -13,7 +13,14 @@ export class Header {
   private router = inject(Router);
 
   get isLoggedIn(): boolean {
-    return !!localStorage.getItem('currentUser');
+    const userStr = localStorage.getItem('currentUser');
+    if (!userStr) return false;
+    try {
+      const user = JSON.parse(userStr);
+      return !!user && typeof user === 'object' && Object.keys(user).length > 0;
+    } catch {
+      return false;
+    }
   }
 
   get isAdmin(): boolean {

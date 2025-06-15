@@ -8,7 +8,9 @@
       <a [routerLink]="['/homepage']" class="nav-link">Home</a>
       <a *ngIf="isAdmin" [routerLink]="['/admin-dashboard']" class="nav-link">Dashboard</a>
       <a *ngIf="!isLoggedIn" [routerLink]="['/login']" class="nav-link">Login</a>
-      <a *ngIf="isLoggedIn" href="#" class="nav-link" (click)="logout($event)">Logout</a>
+      <a *ngIf="isLoggedIn" [routerLink]="['/profile-page']" class="nav-link">Profile</a>
+      <a *ngIf="isLoggedIn" [routerLink]="['/homepage']" class="nav-link" (click)="logout($event)">Logout</a>
+      
     </nav>
   </div>
 </header>

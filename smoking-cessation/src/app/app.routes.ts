@@ -6,7 +6,7 @@ export const routes: Routes = [
     { path: 'signup', loadComponent: () => import('./signup/signup').then(m => m.Signup) },
     { path: 'homepage', loadComponent: () => import('./homepage/homepage').then(m => m.Homepage) },
     { path: 'blog', loadComponent: () => import('./blog/blog').then(m => m.Blog) },
-    { path: 'profilepage', loadComponent: () => import('./profilepage/profilepage').then(m => m.Profilepage) },
+    { path: 'profile-page', loadComponent: () => import('./profile-page/profile-page').then(m => m.ProfilePage) },
     { path: 'admin-dashboard', loadComponent: () => import('./admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),
         children: [
             {
