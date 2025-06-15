@@ -1,6 +1,9 @@
 <header class="main-header">
   <div class="container header-content">
-    <h1 class="site-title">Smoke-Free Journey</h1>
+    <div class="logo-title">
+      <img src="/logo.png" alt="Smoke-Free Journey Logo"/>
+      <h1 class="site-title">Smoke-Free Journey</h1>
+    </div>
     <nav class="main-nav">
       <a [routerLink]="['/homepage']" class="nav-link">Home</a>
       <a *ngIf="isAdmin" [routerLink]="['/admin-dashboard']" class="nav-link">Dashboard</a>

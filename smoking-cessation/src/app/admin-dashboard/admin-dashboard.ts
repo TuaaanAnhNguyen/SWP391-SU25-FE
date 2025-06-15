@@ -1,23 +1,11 @@
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
-import { RouterLink, Routes, Router } from '@angular/router';
-
-export const AdminDashboardRoutes: Routes = [
-  {
-    path: '',
-    loadComponent: () => import('./admin-dashboard').then(m => m.AdminDashboard),
-    children: [
-      {
-        path: 'members',
-        loadComponent: () => import('./members/admin-members').then(m => m.AdminMembers)
-      },
-    ]
-  }
-];
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [RouterLink, CommonModule],
+  standalone: true,
+  imports: [RouterLink, RouterOutlet, CommonModule],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css',
 })
@@ -33,6 +21,12 @@ export class AdminDashboard {
   ];
 
   userDropdownOpen = false;
+
+  private router = inject(Router);
+
+  get isDashboardRoot(): boolean {
+    return /^\/admin-dashboard\/?$/.test(this.router.url); //get exact url of admin-dashboard, no children
+  }
 
   toggleUserDropdown(event: Event) {
     event.stopPropagation();

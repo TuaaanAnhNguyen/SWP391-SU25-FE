@@ -10,6 +10,6 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./admin-admins.css'],
 })
 
-export class AdminCoaches {
+export class AdminAdmins {
   
 }    

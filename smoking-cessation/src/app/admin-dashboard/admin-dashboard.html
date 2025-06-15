@@ -3,46 +3,45 @@
     <div class="sidebar-logo">Smoking Cessation</div>
     <ul class="sidebar-menu">
       <li class="sidebar-menu-item active">
-        <a [routerLink]="['/dashboard']">
+        <a [routerLink]="['/admin-dashboard']">
           <img src="assets/icon/admin/home-icon.png" alt="home-icon" />
           <p>Home</p>
         </a>
       </li>
-      <!-- Example sidebar dropdown for "Users" -->
       <li class="sidebar-menu-item" id="user-list-item" [class.open]="userDropdownOpen"
         (click)="toggleUserDropdown($event)">
         <span>Users</span>
         <ul class="dropdown-menu" *ngIf="userDropdownOpen">
-          <li class="dropdown-menu-item" (click)="closeUserDropdown()">
-            <a [routerLink]="['/dashboard', 'members']">Members</a>
+          <li class="dropdown-menu-item">
+            <a [routerLink]="['/admin-dashboard', 'members']" (click)="closeUserDropdown()">Members</a>
           </li>
-          <li class="dropdown-menu-item" (click)="closeUserDropdown()">
-            <a [routerLink]="['/dashboard', 'coaches']">Coaches</a>
+          <li class="dropdown-menu-item">
+            <a [routerLink]="['/admin-dashboard', 'coaches']" (click)="closeUserDropdown()">Coaches</a>
           </li>
-          <li class="dropdown-menu-item" (click)="closeUserDropdown()">
-            <a [routerLink]="['/dashboard', 'staffs']">Staffs</a>
+          <li class="dropdown-menu-item">
+            <a [routerLink]="['/admin-dashboard', 'staffs']" (click)="closeUserDropdown()">Staffs</a>
           </li>
-          <li class="dropdown-menu-item" (click)="closeUserDropdown()">
-            <a [routerLink]="['/dashboard', 'admins']">Admins</a>
+          <li class="dropdown-menu-item">
+            <a [routerLink]="['/admin-dashboard', 'admins']" (click)="closeUserDropdown()">Admins</a>
           </li>
         </ul>
       </li>
       <li class="sidebar-menu-item">
-        <a [routerLink]="['/dashboard', 'notifications']">
+        <a [routerLink]="['/admin-dashboard', 'notifications']">
           <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/bell.svg" alt="notifications-icon"
             class="icon-svg" />
           <p>Notifications</p>
         </a>
       </li>
       <li class="sidebar-menu-item">
-        <a [routerLink]="['/dashboard', 'feedback']">
+        <a [routerLink]="['/admin-dashboard', 'feedback']">
           <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/message-square.svg" alt="feedback-icon"
             class="icon-svg" />
           <p>Feedback</p>
         </a>
       </li>
       <li class="sidebar-menu-item">
-        <a [routerLink]="['/dashboard', 'membership']">
+        <a [routerLink]="['/admin-dashboard', 'membership']">
           <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/credit-card.svg" alt="membership-icon"
             class="icon-svg" />
           <p>Membership</p>
@@ -59,12 +58,12 @@
   </div>
 
   <section class="main-content">
-    <header class="header">
+    <header class="header" *ngIf="isDashboardRoot">
       <h1 class="header-title">Dashboard Overview</h1>
     </header>
 
     <div class="page-content">
-      <section class="content-section">
+      <section class="content-section" *ngIf="isDashboardRoot">
         <h2>Summary Statistics</h2>
         <div class="stats-grid">
           <div class="stats-card" *ngFor="let stat of stats">
@@ -73,6 +72,7 @@
           </div>
         </div>
       </section>
+      <router-outlet></router-outlet>
     </div>
   </section>
 </div>
