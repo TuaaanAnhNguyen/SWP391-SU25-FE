@@ -1,8 +1,17 @@
-<app-header *ngIf="showHeader()"></app-header>
-<div class="app-layout">
-  <app-sidebar *ngIf="showSidebar()"></app-sidebar>
+<app-header *ngIf="showHeaderFooter()"></app-header>
+<div *ngIf="showSidebar(); else mainContentOnly" class="app-layout">
+  <div class="al-left">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="al-right">
+    <div class="app-main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<ng-template #mainContentOnly>
   <div class="app-main-content">
     <router-outlet></router-outlet>
   </div>
-</div>
-<app-footer *ngIf="showFooter()"></app-footer>
+</ng-template>
+<app-footer *ngIf="showHeaderFooter()"></app-footer>
