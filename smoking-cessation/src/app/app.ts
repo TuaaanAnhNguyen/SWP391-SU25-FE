@@ -20,7 +20,11 @@ export class App {
   constructor() {}
 
   showHeaderFooter() {
-    return !this.showSidebar();
+    return ![
+      '/login',
+      '/signup',
+
+    ].includes(this.router.url) && !this.showSidebar();
   }
 
   showSidebar(){

@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { RouterModule, Router } from '@angular/router';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,8 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.css'
 })
 export class Header {
-  
   private router = inject(Router);
+
+  constructor(public authService: AuthService) {}
 
   get isLoggedIn(): boolean {
     const userStr = localStorage.getItem('currentUser');
@@ -27,8 +29,7 @@ export class Header {
     const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
     return !!user && user.role === 'admin';
   }
-  
-  constructor() {}
+
 
   logout(event: Event) {
     event.preventDefault();
