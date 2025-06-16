@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -16,28 +17,42 @@ export class Login {
   errorMessage: string = '';
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private http = inject(HttpClient);
   
   constructor() {
 
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', Validators.required]
     });
   }
 
   onLogin() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const user = users.find((u: any) => u.email === email && u.password === password);
-      if (user) {
-        this.errorMessage = '';
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.router.navigate(['/homepage']);
-        
-      } else this.errorMessage = 'Invalid email or password.';
+      const formValue = this.loginForm.value;
+
+      const data = {
+        userName: formValue.username,
+        password: formValue.password
+      };
       
-    } else this.errorMessage = 'Please fill in all required fields.';
-    
+      this.http.post('http://localhost:8082/api/login', data).subscribe({
+        next: (res: any) => {
+          this.errorMessage = '';
+          if (res && res.token) {
+            localStorage.setItem('token', res.token);
+            alert('Login successful!');
+            this.router.navigate(['/homepage']);
+          } else {
+            this.errorMessage = 'Login failed. Please check your credentials.';
+          }
+        },
+        error: (err) => {
+          this.errorMessage = 'Login failed. Please try again.';
+      }
+      });
+    } else {
+      this.errorMessage = 'Please fill in all required fields.';
+    }
   }
 }

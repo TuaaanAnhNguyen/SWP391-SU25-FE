@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, HostListener, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })

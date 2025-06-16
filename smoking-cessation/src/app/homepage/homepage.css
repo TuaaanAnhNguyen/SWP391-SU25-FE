@@ -140,13 +140,11 @@
     font-size: 1.25rem;
     font-weight: 600;
     color: #1A1A1A;
-    /* Black for benefit titles on light gold background */
     margin: 0 0 0.5rem 0;
 }
 
 .benefit-description {
     color: #4B5563;
-    /* Kept a neutral grey for descriptions */
     margin-top: 0;
 }
 

@@ -1,31 +1,64 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   imports: [RouterModule, ReactiveFormsModule, CommonModule],
   templateUrl: './signup.html',
-  styleUrl: './signup.css'
+  styleUrl: './signup.css',
 })
 export class Signup {
   signupForm: FormGroup;
   errorMessage: string = '';
-  age: number | '' = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.signupForm = this.fb.group({
-      fullName: ['', Validators.required],
-      //dob: ['', Validators.required],
       username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      email: ['', [Validators.required, Validators.email]],
+      fullName: [''],
+      phoneNumber: ['', [Validators.required]],
       confirmPassword: ['', Validators.required],
-      role: ['member', Validators.required] // default role set to 'member'
+      role: ['MEMBER', Validators.required], // default role set to 'member'
     });
   }
+
+  onSignup() {
+    if (this.signupForm.valid) {
+      const formValue = this.signupForm.value;
+
+      const data = {
+        userName: formValue.username,
+        email: formValue.email,
+        password: formValue.password,
+        phoneNumber: formValue.phoneNumber,
+        role: formValue.role,
+      };
+
+      this.http.post('http://localhost:8082/api/register', data).subscribe({
+        next: (res: any) => {
+          this.errorMessage = '';
+          alert('Đăng ký thành công!');
+        },
+        error: (err) => {
+          this.errorMessage = 'Đăng ký thất bại!';
+        },
+      });
+    } else {
+      this.errorMessage = 'Vui lòng điền đầy đủ thông tin!';
+    }
+  }
+}
+
 
   // calculateAge() {
   //   const dobValue = this.signupForm.get('dob')?.value;
@@ -42,32 +75,3 @@ export class Signup {
   //     this.age = '';
   //   }
   // }
-
-  onSignup() {
-    if (this.signupForm.valid) {
-      const { fullName, username, email, password, confirmPassword, role } = this.signupForm.value;
-      if (password !== confirmPassword) {
-        this.errorMessage = 'Passwords do not match.';
-        return;
-      }
-
-      // Get existing users or initialize empty array
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-
-      // Check if username or email already exists
-      if (users.some((u: any) => u.username === username || u.email === email)) {
-        this.errorMessage = 'Username or email already exists.';
-        return;
-      }
-      
-      // Add new user
-      users.push({ fullName, username, email, password, role });
-      localStorage.setItem('users', JSON.stringify(users));
-      this.errorMessage = 'Signup successful! You can now login.';
-      this.signupForm.reset();
-      this.age = '';
-    } else {
-      this.errorMessage = 'Please fill in all required fields.';
-    }
-  }
-}
