@@ -25,7 +25,8 @@
         />
       </div>
       <div class="forgot-password-link">
-        <a href="#" class="text-link">Forgot Password?</a>
+        <a href="" class="text-link"onclick="new modal('#resetpass_modal');return false">Forgot Password?</a>
+        /*trying to implement forget password modal*/
       </div>
       <button type="submit" class="button-primary">Login</button>
       <div *ngIf="errorMessage" class="prompt-text" style="color: red;">{{ errorMessage }}</div>
@@ -36,5 +37,6 @@
         <a [routerLink]="['/signup']" class="text-link">Sign up here</a>
       </p>
     </div>
+    
   </div>
 </div>
