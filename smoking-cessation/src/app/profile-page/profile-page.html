@@ -1,0 +1,38 @@
+<div class="profile-container" *ngIf="user; else notLoggedIn">
+  <div class="user-header">
+    <!--<img src="assets/avatar.png" alt="Avatar" class="avatar" /> -->
+    <div>
+      <h2>{{ user.fullName || user.username }}</h2>
+      <div style="color: #888;">Role: {{ user.role | titlecase }}</div>
+    </div>
+  </div>
+  <div class="section">
+    <table class="info-table">
+      <tr>
+        <td>Username</td>
+        <td>{{ user.username }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <td>Full Name</td>
+        <td>{{ user.fullName }}</td>
+      </tr>
+      <tr>
+        <td>Phone Number</td>
+        <td>{{ user.phone }}</td>
+      </tr>
+      <tr>
+        <td>Role</td>
+        <td>{{ user.role | titlecase }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<ng-template #notLoggedIn>
+  <div class="profile-container">
+    <div class="alert">You are not logged in.</div>
+  </div>
+</ng-template>
