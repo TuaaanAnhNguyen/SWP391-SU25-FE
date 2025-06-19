@@ -1,0 +1,20 @@
+<div class="dashboard-body">
+  <section class="main-content">
+    <header class="header" *ngIf="isDashboardRoot">
+      <h1 class="header-title">Dashboard Overview</h1>
+    </header>
+
+    <div class="page-content">
+      <section class="content-section" *ngIf="isDashboardRoot">
+        <h2>Summary Statistics</h2>
+        <div class="stats-grid">
+          <div class="stats-card" *ngFor="let stat of stats">
+            <h3>{{ stat.title }}</h3>
+            <p class="stats-value">{{ stat.value }}</p>
+          </div>
+        </div>
+      </section>
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</div>

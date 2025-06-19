@@ -1,0 +1,26 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.al-left {
+  width: 15vw;
+  min-width: 180px;
+  max-width: 300px;
+  background: #fff;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+}
+
+.al-right {
+  flex: 1;
+  width: 85vw;
+  min-width: 0;
+  background: #f3f4f6;
+}
+
+.app-main-content {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+}
