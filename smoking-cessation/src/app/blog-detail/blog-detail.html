@@ -1,0 +1,9 @@
+
+<div *ngIf="postData">
+  <h2>{{ postData.title }}</h2>
+  <img [src]="postData.image" [alt]="postData.title" style="max-width: 100%;" />
+  <p><strong>By:</strong> {{ postData.author }} | <strong>Date:</strong> {{ postData.date }} | <strong>Category:</strong> {{ postData.category }}</p>
+  <p>{{ postData.content }}</p>
+  <a [routerLink]="['/blog']">← Quay lại danh sách</a>
+  <p>DEBUG: postId = {{ postId }}</p>
+</div>
