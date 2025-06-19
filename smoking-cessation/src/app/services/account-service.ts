@@ -1,20 +1,26 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, OnInit, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserInterface } from '../user-interface';
+import { environment } from '../../environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AccountService {
+export class AccountService implements OnInit {
   private http = inject(HttpClient);
-  currentUserSig = signal<any | undefined | null>(undefined);
+  currentUserSig = signal<any | null>(null);
 
   constructor() {}
-
-  onLogin(obj: any): Observable<any> {
-    return this.http.post('http://localhost:8082/api/login', obj);
+  async ngOnInit() {
+    const token = localStorage.getItem('token');
+    this.currentUserSig.set(await this.verifyToken(token!));
   }
 
-  
+  onLogin(obj: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/api/login`, obj);
+  }
+
+  async verifyToken(token: string) {
+    return this.http.post(`${environment.apiUrl}/api/token`, token);
+  }
 }

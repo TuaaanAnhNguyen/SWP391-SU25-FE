@@ -1,6 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { RouterModule, Router } from '@angular/router';
-import { Component, inject } from '@angular/core';
+import { Component, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,8 +11,13 @@ import { CommonModule } from '@angular/common';
 })
 export class Header {
   private router = inject(Router);
-
+  isSticky = false;
   constructor(public authService: AuthService) {}
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isSticky = window.scrollY > 20;
+  }
 
   get isLoggedIn(): boolean {
     const userStr = localStorage.getItem('currentUser');
@@ -34,6 +39,7 @@ export class Header {
   logout(event: Event) {
     event.preventDefault();
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/homepage']);
+    this.authService.currentUserSig.set(null);
+    this.router.navigate(['/homepage']).then(() => window.location.reload());
   }
 }

@@ -1,4 +1,3 @@
-import { UserInterface } from './../user-interface';
 import { AccountService } from './../services/account-service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -37,7 +36,7 @@ export class Login {
   constructor(private accService: AccountService) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -57,9 +56,8 @@ export class Login {
             localStorage.setItem('token', res.token);
 
             const {password, token, ...userInfo} = res;
+            const currentUser = {...userInfo, token: res.token };
             localStorage.setItem('currentUser', JSON.stringify(userInfo));
-
-            this.authService.currentUserSig.set(userInfo);
 
             this.router.navigate(['/homepage']);
 
