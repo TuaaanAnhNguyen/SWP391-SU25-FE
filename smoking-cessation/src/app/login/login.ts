@@ -40,7 +40,7 @@ export class Login {
     });
   }
 
-  onSubmit() {
+  onLogin() {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
 
@@ -57,7 +57,9 @@ export class Login {
 
             const {password, token, ...userInfo} = res;
             const currentUser = {...userInfo, token: res.token };
-            localStorage.setItem('currentUser', JSON.stringify(userInfo));
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            this.accService.currentUserSig.set(currentUser);
 
             this.router.navigate(['/homepage']);
 
@@ -73,22 +75,3 @@ export class Login {
     }
   }
 }
-
-//       next: (res: any) => {
-//         this.errorMessage = '';
-//         if (res && res.token) {
-//           localStorage.setItem('token', res.token);
-//           alert('Login successful!');
-//           this.router.navigate(['/homepage']);
-//         } else {
-//           this.errorMessage = 'Login failed. Please check your credentials.';
-//         }
-//       },
-//       error: (err) => {
-//         this.errorMessage = 'Login failed. Please try again.';
-//     }
-//     });
-//   } else {
-//     this.errorMessage = 'Please fill in all required fields.';
-//   }
-// }

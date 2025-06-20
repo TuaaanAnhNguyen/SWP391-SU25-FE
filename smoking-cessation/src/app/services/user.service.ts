@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +7,19 @@ import { Observable } from 'rxjs';
 export class UserService {
   http = inject(HttpClient);
 
-  getAccountProfile(usernameStr: string): Observable<any> {
-    return this.http.get('http://localhost:8082/api/account/' + usernameStr + '/profile');
+  getAccountProfile(usernameStr: string) {
+    const currentUserStr = localStorage.getItem('currentUser');
+    let token = '';
+    if(currentUserStr) {
+      const currentUser = JSON.parse(currentUserStr);
+      token = currentUser.token;
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.get('http://localhost:8082/api/account/' + usernameStr + '/profile', { headers });
   }
 
   constructor() { }

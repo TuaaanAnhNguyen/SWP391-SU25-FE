@@ -19,21 +19,21 @@ export class Header {
     this.isSticky = window.scrollY > 20;
   }
 
-  get isLoggedIn(): boolean {
-    const userStr = localStorage.getItem('currentUser');
-    if (!userStr) return false;
-    try {
-      const user = JSON.parse(userStr);
-      return !!user && typeof user === 'object' && Object.keys(user).length > 0;
-    } catch {
-      return false;
-    }
-  }
+  // get isLoggedIn(): boolean {
+  //   const userStr = localStorage.getItem('currentUser');
+  //   if (!userStr) return false;
+  //   try {
+  //     const user = JSON.parse(userStr);
+  //     return !!user && typeof user === 'object' && Object.keys(user).length > 0;
+  //   } catch {
+  //     return false;
+  //   }
+  // }
 
-  get isAdmin(): boolean {
-    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
-    return !!user && user.role === 'admin';
-  }
+  // get isAdmin(): boolean {
+  //   const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+  //   return !!user && user.role === 'admin';
+  // }
 
 
   logout(event: Event) {

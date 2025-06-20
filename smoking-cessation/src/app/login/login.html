@@ -1,7 +1,7 @@
 <div class='page-body'>
   <div class="login-container">
     <h2 class="login-title">Login to Smoke-Free Journey</h2>
-    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div class="form-group">
         <label for="username" class="form-label">Username</label>
         <input
@@ -26,7 +26,7 @@
       </div>
       <div class="forgot-password-link">
         <a href="" class="text-link"onclick="new modal('#resetpass_modal');return false">Forgot Password?</a>
-        /*trying to implement forget password modal*/
+        <!--trying to implement forget password modal-->
       </div>
       <button type="submit" class="button-primary">Login</button>
       <div *ngIf="errorMessage" class="prompt-text" style="color: red;">{{ errorMessage }}</div>

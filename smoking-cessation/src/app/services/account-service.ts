@@ -13,14 +13,14 @@ export class AccountService implements OnInit {
   constructor() {}
   async ngOnInit() {
     const token = localStorage.getItem('token');
-    this.currentUserSig.set(await this.verifyToken(token!));
+    this.currentUserSig.set(token);
   }
 
   onLogin(obj: any): Observable<any> {
     return this.http.post(`${environment.apiUrl}/api/login`, obj);
   }
 
-  async verifyToken(token: string) {
-    return this.http.post(`${environment.apiUrl}/api/token`, token);
-  }
+  // async verifyToken(token: string) {
+  //   return this.http.post(`${environment.apiUrl}/api/token`, token);
+  // }
 }

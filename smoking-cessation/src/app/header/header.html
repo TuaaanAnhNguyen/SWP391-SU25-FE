@@ -12,7 +12,7 @@
         <a [routerLink]="['/homepage']" class="nav-link" (click)="logout($event)">Logout</a>
       </div>
       
-      <a [routerLink]="['/login']" class="nav-link" *ngIf="authService.currentUserSig() === null || authService.currentUserSig() === undefined">Login</a>
+      <a [routerLink]="['/login']" class="nav-link" *ngIf="!authService.currentUserSig()">Login</a>
       
 
     </nav>
