@@ -7,6 +7,7 @@ export const routes: Routes = [
   { path: 'homepage', loadComponent: () => import('./homepage/homepage').then(m => m.Homepage) },
   { path: 'blog', loadComponent: () => import('./blog/blog').then(m => m.Blog) },
   { path: 'post/:id', loadComponent: () => import('./blog-detail/blog-detail').then(m => m.BlogDetail) },
+  { path: 'profile-page', loadComponent: () => import('./profile-page/profile-page').then(m => m.ProfilePage) },
   { 
     path: 'admin-dashboard', 
     loadComponent: () => import('./admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),
