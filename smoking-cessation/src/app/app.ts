@@ -5,12 +5,12 @@ import { Sidebar } from "./sidebar/sidebar";
 import { CommonModule } from '@angular/common';
 import { Footer } from "./footer/footer";
 
-
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, Header, CommonModule, Sidebar, Footer],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrls: ['./app.css'],
 })
 export class App {
   protected title = 'smoking-cessation';
@@ -23,11 +23,10 @@ export class App {
     return ![
       '/login',
       '/signup',
-
     ].includes(this.router.url) && !this.showSidebar();
   }
 
-  showSidebar(){
+  showSidebar() {
     return this.router.url.startsWith('/admin-dashboard');
   }
 }
