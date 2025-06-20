@@ -62,6 +62,8 @@ export class Login {
 
             this.authService.currentUserSig.set(userInfo);
 
+            this.authService.currentUserSig.set(userInfo);
+
             this.router.navigate(['/homepage']);
 
           } else {

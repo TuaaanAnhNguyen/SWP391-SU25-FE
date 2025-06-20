@@ -2,17 +2,9 @@
     background: linear-gradient(to top, #fcf0b9, #ffeaae);
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+    position: fixed;
     width: 100%;
     z-index: 100;
-    top: 0;
-}
-
-.main-header.sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.041);
 }
 
 .container {
@@ -61,13 +53,4 @@
 
 .nav-link:hover {
     color: #2563EB;
-}
-
-.state-logged-in {
-    display: flex;
-    justify-content: space-between;
-}
-
-.state-logged-in a {
-    margin-left: 10px;
 }
