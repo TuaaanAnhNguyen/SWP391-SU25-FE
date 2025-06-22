@@ -1,0 +1,20 @@
+<header class="main-header">
+  <div class="container header-content">
+    <div class="logo-title">
+      <img src="/logo.png" alt="Smoke-Free Journey Logo"/>
+      <h1 class="site-title">Smoke-Free Journey</h1>
+    </div>
+    <nav class="main-nav">
+      <a [routerLink]="['/homepage']" class="nav-link">Home</a>
+      <div *ngIf="authService.currentUserSig()">
+        <a [routerLink]="['/admin-dashboard']" class="nav-link">Dashboard</a>
+        <a [routerLink]="['/profile-page']" class="nav-link">Profile</a>
+        <a [routerLink]="['/homepage']" class="nav-link" (click)="logout($event)">Logout</a>
+      </div>
+      
+      <a [routerLink]="['/login']" class="nav-link" *ngIf="authService.currentUserSig() === null">Login</a>
+      
+
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,13 @@
+.main-footer {
+    background-color: rgba(26, 26, 26, 0.9);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    box-shadow: 0 -4px 6px -1px rgba(212, 175, 55, 0.1), 0 -2px 4px -1px rgba(212, 175, 55, 0.06);
+}
+
+.footer-content {
+    text-align: center;
+    color: #F0D8A8;
+}
