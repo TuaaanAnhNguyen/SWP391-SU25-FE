@@ -8,6 +8,7 @@ export const routes: Routes = [
   { path: 'blog', loadComponent: () => import('./blog/blog').then(m => m.Blog) },
   { path: 'post/:id', loadComponent: () => import('./blog-detail/blog-detail').then(m => m.BlogDetail) },
   { path: 'profile-page', loadComponent: () => import('./profile-page/profile-page').then(m => m.ProfilePage) },
+  { path: 'quit-plan', loadComponent: () => import('./quit-plan/quit-plan').then(m => m.QuitPlan) },
   { 
     path: 'admin-dashboard', 
     loadComponent: () => import('./admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),

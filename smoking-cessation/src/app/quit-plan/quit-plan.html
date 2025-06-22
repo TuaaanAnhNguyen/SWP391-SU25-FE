@@ -1,0 +1,185 @@
+<main class="container main-content">
+  <h2 class="section-title">Build Your Personalized Quit Plan</h2>
+  <div class="quit-plan-form-container">
+    <p class="form-intro-text">
+      Fill out the sections below to create a quit plan tailored to your needs.
+      This will help you stay motivated and prepared!
+    </p>
+    <form [formGroup]="quitPlanForm" (ngSubmit)="onSubmit()">
+      <!-- Section: Choose Your Quit Date -->
+      <div class="form-section">
+        <h3 class="form-section-title">1. Set Your Quit Date</h3>
+        <div class="form-group">
+          <label for="quit-date" class="form-label">When do you plan to quit?</label>
+          <input
+            type="date"
+            id="quit-date"
+            formControlName="quitDate"
+            class="form-input"
+            required
+          />
+          <div *ngIf="quitDateWarning" style="color: #b91c1c; margin-top: 0.5rem">
+            {{ quitDateWarning }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Your Reasons for Quitting -->
+      <div class="form-section">
+        <h3 class="form-section-title">2. Why are you quitting?</h3>
+        <p class="form-label">
+          Select your personal reasons to stay motivated:
+        </p>
+        <div class="options-grid">
+          <div
+            class="choice-card"
+            *ngFor="let reason of reasonsList"
+            [class.selected-choice]="quitPlanForm.value.reasons.includes(reason.value)"
+            (click)="toggleCheckBox('reasons', reason.value)"
+          >
+            <input
+              type="checkbox"
+              [id]="reason.id"
+              [value]="reason.value"
+              [checked]="quitPlanForm.value.reasons.includes(reason.value)"
+              readonly
+            />
+            <span class="choice-text">{{ reason.label }}</span>
+            <svg
+              class="checkmark-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-8.84" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top: 1rem">
+          <label for="other-reasons" class="form-label"
+            >Other reasons (optional):</label
+          >
+          <textarea
+            id="other-reasons"
+            formControlName="otherReasons"
+            class="form-textarea"
+            placeholder="e.g., To set a good example, because my doctor told me to..."
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Section: Identify Your Triggers -->
+      <div class="form-section">
+        <h3 class="form-section-title">3. Identify Your Triggers</h3>
+        <p class="form-label">
+          What situations, emotions, or activities make you want to smoke?
+        </p>
+        <div class="options-grid">
+          <div
+            class="choice-card"
+            *ngFor="let trigger of triggersList"
+            [class.selected-choice]="quitPlanForm.value.triggers.includes(trigger.value)"
+            (click)="toggleCheckBox('triggers', trigger.value)"
+          >
+            <input
+              type="checkbox"
+              [id]="trigger.id"
+              [value]="trigger.value"
+              [checked]="quitPlanForm.value.triggers.includes(trigger.value)"
+              readonly
+            />
+            <span class="choice-text">{{ trigger.label }}</span>
+            <svg
+              class="checkmark-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-8.84" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top: 1rem">
+          <label for="other-triggers" class="form-label"
+            >Other triggers (optional):</label
+          >
+          <textarea
+            id="other-triggers"
+            formControlName="otherTriggers"
+            class="form-textarea"
+            placeholder="e.g., Talking on the phone, certain places..."
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Section: Your Quitting Strategies -->
+      <div class="form-section">
+        <h3 class="form-section-title">4. How Will You Do It? (Strategies)</h3>
+        <p class="form-label">
+          Which strategies will you use to help you quit and manage cravings?
+        </p>
+        <div class="options-grid">
+          <div
+            class="choice-card"
+            *ngFor="let strategy of strategiesList"
+            [class.selected-choice]="quitPlanForm.value.strategies.includes(strategy.value)"
+            (click)="toggleCheckBox('strategies', strategy.value)"
+          >
+            <input
+              type="checkbox"
+              [id]="strategy.id"
+              [value]="strategy.value"
+              [checked]="quitPlanForm.value.strategies.includes(strategy.value)"
+              readonly
+            />
+            <span class="choice-text">{{ strategy.label }}</span>
+            <svg
+              class="checkmark-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-8.84" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top: 1rem">
+          <label for="other-strategies" class="form-label"
+            >Other strategies or notes (optional):</label
+          >
+          <textarea
+            id="other-strategies"
+            formControlName="otherStrategies"
+            class="form-textarea"
+            placeholder="e.g., Tell my coworker to hold me accountable, keep a stress ball handy..."
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="button-primary">Create My Plan</button>
+      </div>
+    </form>
+  </div>
+</main>
