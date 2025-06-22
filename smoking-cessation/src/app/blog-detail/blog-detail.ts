@@ -14,7 +14,15 @@ export class BlogDetail implements OnInit {
   postData: any;
 
   posts = [
-  
+    {
+      id: 1,
+      title: 'The First 24 Hours',
+      content: 'Nội dung bài viết 1',
+      image: '/Healthy.jpg',
+      author: 'Admin',
+      date: '2025-06-18',
+      category: 'Health'
+    },
     {
       id: 2,
       title: 'Support System',
