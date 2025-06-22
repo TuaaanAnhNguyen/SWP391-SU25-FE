@@ -12,11 +12,33 @@
   padding: 0;
   margin: 0;
   overflow: hidden;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.98);
+  border-radius: 1rem;
+  box-shadow:
+    0 4px 24px 0 rgba(56, 189, 248, 0.13),
+    0 1.5px 8px 0 rgba(59, 130, 246, 0.10),
+    0 0.5px 1.5px 0 rgba(59, 130, 246, 0.07);
+  border: 1.5px solid #e0e7ef;
+  transition:
+    transform 0.22s cubic-bezier(.4,2.2,.6,1),
+    box-shadow 0.22s cubic-bezier(.4,2.2,.6,1),
+    border-color 0.22s cubic-bezier(.4,2.2,.6,1);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
+.blog-post-card:hover {
+  transform: translateY(-16px) scale(1.035);
+  box-shadow:
+    0 16px 48px 0 rgba(56, 189, 248, 0.22),
+    0 8px 32px 0 rgba(59, 130, 246, 0.18),
+    0 2px 8px 0 rgba(59, 130, 246, 0.10);
+  border-color: #bae6fd;
+  z-index: 2;
+}
 .blog-post-image-container {
   width: 100%;
   overflow: hidden;
@@ -83,7 +105,7 @@
 .section-title {
     font-size: 1.75rem;
     font-weight: 700;
-    color: #1D4ED8;
+    color: #38BDF8; /* Cùng màu với tiêu đề card */
     text-align: center;
     margin-bottom: 2.5rem;
 }
@@ -162,7 +184,7 @@
 .blog-post-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #2563EB;
+    color: #38BDF8; /* Cyan pastel, rất dịu và hiện đại */
     margin-top: 0.5rem;
     margin-bottom: 0.5rem; /* Tạo khoảng cách giữa tiêu đề và underline */
     padding-left: 1rem;
@@ -195,12 +217,10 @@
   font-weight: 600;
   font-size: 0.85rem;
   transition: background-color 0.3s ease-in-out;
-  margin-top: 0.5rem;
-  margin-left: 1rem; /* 👈 căn lề trái */
-  margin-bottom: 1rem;
-
-  /* 👇 không cho tràn */
-  align-self: start; /* nếu blog-post-card dùng flex */
+  margin-top: auto;         /* Đẩy nút xuống sát đáy card */
+  margin-bottom: 1rem;      /* Cách đáy card một chút */
+  margin-left: 1rem;        /* Sát lề trái */
+  align-self: flex-start;   /* Sát trái */
 }
 .read-more-link:hover {
   background-color: #16a34a; /* đổi màu nền khi hover */
@@ -221,18 +241,23 @@
 .sidebar-section-title {
     font-size: 1.125rem;
     font-weight: 600;
-    color: #2563EB;
-    margin-top: 0;
+    color: #38BDF8;
+    margin-top: 0.5rem;      /* 👈 Thêm khoảng cách phía trên */
     margin-bottom: 1rem;
+    padding-top: 0.5rem;     /* 👈 Thêm padding trên */
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #E5E7EB;
+    text-align: left;
+    padding-left: 0.5rem;
 }
 
 .categories-list,
 .recent-posts-list {
     list-style: none;
-    padding: 0;
+    padding-left: 1.0rem;
+    margin-top: 0.5rem;      /* 👈 Thêm khoảng cách phía trên */
     margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;  /* 👈 Thêm padding dưới */
 }
 
 .categories-list li,
@@ -242,14 +267,15 @@
 
 .categories-list a,
 .recent-posts-list a {
-    color: #3B82F6;
+    color: #60A5FA; /* Xanh dương nhạt, dịu mắt */
     text-decoration: none;
     transition: color 0.2s ease-in-out;
+    font-weight: 500;
 }
 
 .categories-list a:hover,
 .recent-posts-list a:hover {
-    color: #1D4ED8;
+    color: #2563EB; /* Xanh dương đậm hơn khi hover */
     text-decoration: underline;
 }
 

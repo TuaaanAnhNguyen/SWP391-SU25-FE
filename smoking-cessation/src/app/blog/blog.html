@@ -17,8 +17,7 @@
             By Admin | June 18, 2025 | Category: Health
           </p>
           <p class="blog-post-excerpt">
-            Discover the immediate changes your body undergoes when you decide
-            to quit smoking and tips to manage early cravings.
+            Discover the immediate and powerful changes your body undergoes when you decide to quit smoking, along with essential tips to effectively manage early cravings and challenges.
           </p>
           <a [routerLink]="['/post', 1]" class="read-more-link">Read More →</a>
         </article>
@@ -33,7 +32,7 @@
           </h3>
           <div class="blog-post-underline"></div>
           <p class="blog-post-meta">
-            By Coach Sarah | May 20, 2024 | Category: Community
+            By Sarah | May 20, 2024 | Category: Community
           </p>
           <p class="blog-post-excerpt">
             The journey to a smoke-free life is easier with a strong support
@@ -82,7 +81,6 @@
           <a [routerLink]="['/post', 4]" class="read-more-link">Read More →</a>
         </article>
       </div>
-
       <aside class="blog-sidebar">
         <div class="search-bar-container">
           <input
@@ -108,7 +106,6 @@
             </svg>
           </button>
         </div>
-
         <h3 class="sidebar-section-title">Categories</h3>
         <ul class="categories-list">
           <li><a href="#">Quitting Tips (12)</a></li>
@@ -117,18 +114,16 @@
           <li><a href="#">Health (15)</a></li>
           <li><a href="#">Success Stories (7)</a></li>
         </ul>
-
         <h3 class="sidebar-section-title">Recent Posts</h3>
         <ul class="recent-posts-list">
-          <li><a href="#">The First 24 Hours: What to Expect</a></li>
-          <li><a href="#">Building Your Support System</a></li>
-          <li><a href="#">Financial Benefits of Quitting</a></li>
-          <li><a href="#">Mindfulness Techniques for Cravings</a></li>
+          <li><a [routerLink]="['/post', 1]">The First 24 Hours: What to Expect</a></li>
+          <li><a [routerLink]="['/post', 2]">Building Your Support System</a></li>
+          <li><a [routerLink]="['/post', 3]">Financial Benefits of Quitting</a></li>
+          <li><a [routerLink]="['/post', 4]">Mindfulness Techniques for Cravings</a></li>
         </ul>
       </aside>
     </div>
   </main>
-
   <footer class="main-footer">
     <div class="container footer-content">
       <p>&copy; 2024 Smoke-Free Journey. All rights reserved.</p>
