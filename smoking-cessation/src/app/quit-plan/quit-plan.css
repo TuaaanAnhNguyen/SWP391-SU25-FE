@@ -227,3 +227,9 @@
 .text-link:hover {
     color: #a98a2a;
 }
+
+.preferred-label {
+  color: #d4af37;
+  font-size: 0.95em;
+  margin-left: 0.5em;
+}
