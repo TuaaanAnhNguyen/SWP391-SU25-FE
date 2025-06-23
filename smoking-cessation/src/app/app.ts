@@ -4,11 +4,11 @@ import { Header } from './header/header';
 import { Sidebar } from "./sidebar/sidebar";
 import { CommonModule } from '@angular/common';
 import { Footer } from "./footer/footer";
-
+import { SidebarMenu } from './sidebar-menu/sidebar-menu';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Header, CommonModule, Sidebar, Footer],
+  imports: [RouterOutlet, Header, CommonModule, Sidebar, Footer, SidebarMenu],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })

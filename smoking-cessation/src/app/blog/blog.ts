@@ -18,30 +18,5 @@ export class Blog {
   ];
 }
 export class BlogComponent {
-  posts = [
-    {
-      id: 1,
-      title: 'The First 24 Hours',
-      excerpt: 'Ngày đầu tiên bỏ thuốc...',
-      image: '/assets/Healthy.jpg'
-    },
-    {
-      id: 2,
-      title: 'Support System',
-      excerpt: 'Hệ thống hỗ trợ bạn...',
-      image: '/assets/Support-group.jpg'
-    },
-    {
-      id: 3,
-      title: 'Financial Benefits',
-      excerpt: 'Lợi ích tài chính khi bỏ thuốc...',
-      image: '/assets/Savings-money.jpg'
-    },
-    {
-      id: 4,
-      title: 'Mindfulness Techniques',
-      excerpt: 'Kỹ thuật chánh niệm...',
-      image: '/assets/Mindfulness.jpg'
-    }
-  ];
+
 }

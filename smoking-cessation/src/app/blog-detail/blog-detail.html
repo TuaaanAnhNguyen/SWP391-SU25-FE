@@ -1,9 +1,13 @@
-
-<div *ngIf="postData">
-  <h2>{{ postData.title }}</h2>
-  <img [src]="postData.image" [alt]="postData.title" style="max-width: 100%;" />
-  <p><strong>By:</strong> {{ postData.author }} | <strong>Date:</strong> {{ postData.date }} | <strong>Category:</strong> {{ postData.category }}</p>
-  <p>{{ postData.content }}</p>
-  <a [routerLink]="['/blog']">← Quay lại danh sách</a>
-  <p>DEBUG: postId = {{ postId }}</p>
+<div *ngIf="postData" class="post-wrapper">
+  <h2 class="post-title">{{ postData.title }}</h2>
+  <img [src]="postData.image" [alt]="postData.title" class="post-image" />
+  <p class="post-meta">
+    <strong>By:</strong> {{ postData.author }} |
+    <strong>Date:</strong> {{ postData.date }} |
+    <strong>Category:</strong> {{ postData.category }}
+  </p>
+  <div class="post-content">
+    <p [innerHTML]="postData.content"></p>
+  </div>
+  <a [routerLink]="['/blog']" class="post-back">← Back to Blog List</a>
 </div>

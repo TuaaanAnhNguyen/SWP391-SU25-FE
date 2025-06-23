@@ -1,0 +1,68 @@
+.post-wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  background: linear-gradient(135deg, #f3f7fa 0%, #e6ecf3 100%);
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(44, 62, 80, 0.10);
+}
+ 
+.post-title {
+  color: #355c7d; /* Xanh tím dịu */
+  font-size: 34px;
+  margin-bottom: 22px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.post-image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 12px rgba(37, 99, 235, 0.08);
+  background: #e0e7ef;
+}
+
+.post-meta {
+  font-size: 15px;
+  color: #6c757d; /* Xám xanh dịu */
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.post-content {
+  font-size: 19px;
+  color: #34495e; /* Xanh đen dịu */
+  line-height: 1.8;
+  margin-bottom: 32px;
+  background: #f8fafc;
+  padding: 24px 18px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.04);
+}
+
+.post-back {
+  color: #5d8aa8; /* Xanh pastel */
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  background: #e0e7ef;
+  transition: background 0.2s, color 0.2s;
+  display: inline-block;
+}
+
+.post-back:hover {
+  background: #5d8aa8;
+  color: #fff;
+  text-decoration: none;
+}
+
+.debug {
+  margin-top: 30px;
+  font-size: 13px;
+  color: #94a3b8;
+}
