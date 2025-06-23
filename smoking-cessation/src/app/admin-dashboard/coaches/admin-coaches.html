@@ -1,0 +1,32 @@
+<div class="coaches-header">
+  <h2>Coach Management</h2>
+  <button class="button primary-button add-coach-btn">
+    <img src="/add-button.png" alt="add-btn" />
+    <span>Add Coach</span>
+  </button>
+</div>
+<div class="coach-table-wrapper">
+  <table class="coaches-table">
+    <thead>
+      <tr>
+        <th>Coach ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Full Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coach of coaches">
+        <td>{{ coach.id }}</td>
+        <td>{{ coach.username }}</td>
+        <td>{{ coach.email }}</td>
+        <td>{{ coach.fullName }}</td>
+        <td>
+          <button class="action-button edit-button">Edit</button>
+          <button class="action-button delete-button">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
