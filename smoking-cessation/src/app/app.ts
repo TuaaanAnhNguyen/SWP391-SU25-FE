@@ -5,6 +5,7 @@ import { Sidebar } from "./sidebar/sidebar";
 import { CommonModule } from '@angular/common';
 import { Footer } from "./footer/footer";
 import { SidebarMenu } from './sidebar-menu/sidebar-menu';
+
 @Component({
   selector: 'app-root',
   standalone: true,
