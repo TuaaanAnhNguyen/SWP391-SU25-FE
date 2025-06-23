@@ -17,21 +17,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>ADM001</td>
-        <td>adminuser1</td>
-        <td>admin1&#64;gmail.com</td>
-        <td>Nguyen Van A</td>
-        <td>
-          <button class="action-button edit-button">Edit</button>
-          <button class="action-button delete-button">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>ADM002</td>
-        <td>adminuser2</td>
-        <td>admin2&#64;gmail.com</td>
-        <td>Tran Thi B</td>
+      <tr *ngFor="let admin of admins">
+        <td>{{ admin.id }}</td>
+        <td>{{ admin.username }}</td>
+        <td>{{ admin.email }}</td>
+        <td>{{ admin.fullName }}</td>
         <td>
           <button class="action-button edit-button">Edit</button>
           <button class="action-button delete-button">Delete</button>

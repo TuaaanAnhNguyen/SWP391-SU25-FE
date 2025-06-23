@@ -1,0 +1,32 @@
+<div class="staffs-header">
+  <h2>Staff Management</h2>
+  <button class="button primary-button add-staff-btn">
+    <img src="/add-button.png" alt="add-btn" />
+    <span>Add Member</span>
+  </button>
+</div>
+<div class="staffs-table-wrapper">
+  <table class="staffs-table">
+    <thead>
+      <tr>
+        <th>Member ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Full Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let staff of staffs">
+        <td>{{ staff.id }}</td>
+        <td>{{ staff.username }}</td>
+        <td>{{ staff.email }}</td>
+        <td>{{ staff.fullName }}</td>
+        <td>
+          <button class="action-button edit-button">Edit</button>
+          <button class="action-button delete-button">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

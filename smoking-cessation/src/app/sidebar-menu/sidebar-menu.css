@@ -1,0 +1,63 @@
+.menu-toggle {
+  font-size: 24px;
+  position: fixed;     /* Makes it float */
+  cursor: pointer;
+  padding: 10px;
+  top:10px;
+  left:10px;
+  position: relative; /* stacking it naturally*/
+  z-index: 1100;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 22px;
+ line-height: 24px;
+ box-sizing: content-box;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  
+
+  padding: 10px;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  
+  overflow-y: auto;
+   /* Animation properties for vertical collapse/expand */
+  transform: scaleY(0);      /* Hide vertically */
+  transform-origin: top;     /* Start animation from top */
+  transition: transform 0.3s ease;
+  
+  z-index: 1000;
+  
+  
+  overflow: hidden;            /* Hide content when collapsed */
+}
+
+.sidebar.active {
+  transform: scaleY(1);      /* Show vertically */
+  display: block; /* Show when active */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+   margin: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+}
+.sidebar ul li:last-child {
+  border-bottom: none;
+}

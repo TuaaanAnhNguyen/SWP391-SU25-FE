@@ -17,6 +17,7 @@
             formControlName="quitDate"
             class="form-input"
             required
+            [min]="todayString"
           />
           <div *ngIf="quitDateWarning" style="color: #b91c1c; margin-top: 0.5rem">
             {{ quitDateWarning }}
@@ -24,9 +25,46 @@
         </div>
       </div>
 
+      <!-- Section: Duration of Plan -->
+       <div class="form-section">
+        <h3 class="form-section-title">2. Duration of Quit Plan</h3>
+        <div class="form-group">
+            <label for="duration" class="form-label">Choose the duration for the plan:</label>
+            <select id="duration" formControlName="duration" class="form-input" placeholder="Choose a duration">
+                <option value="" disabled selected>Choose a duration</option>
+                <option value="2">2 weeks</option>
+                <option value="3">3 weeks</option>
+                <option value="4">4 weeks</option>
+                <option value="5">5 weeks</option>
+                <option value="6">6 weeks <span class="preferred-label">(preferred)</span></option>
+            </select>
+        </div>
+       </div>
+
+       <!-- Section: Smoking Status -->
+        <div class="form-section">
+            <h3 class="form-section-title">3. Smoking Status</h3>
+            <div class="form-group">
+                <label for="dailyCigarettes" class="form-label">Daily amount?</label>
+                <input type="number" id="dailyCigarettes" formControlName="dailyCigarettes" class="form-input" min="0" placeholder="Enter your daily amount">
+            </div>
+            <div class="form-group">
+                <label for="frequency" class="form-label">Frequency</label>
+                <input type="text" id="frequency" formControlName="frequency" class="form-input" placeholder="Enter your smoking frequency">
+            </div>
+            <div class="form-group">
+                <label for="cigaretteType" class="form-label">Type of tobacco</label>
+                <input type="text" id="cigaretteType" formControlName="cigaretteType" class="form-input" placeholder="Enter type of tobacco">
+            </div>
+            <div class="form-group">
+                <label for="cigaretteCost" class="form-label">Cost of each pack</label>
+                <input type="number" id="cigaretteCost" formControlName="cigaretteCost" class="form-input" min="0" placeholder="Cost of each pack of tobacco">
+            </div>
+        </div>
+
       <!-- Section: Your Reasons for Quitting -->
       <div class="form-section">
-        <h3 class="form-section-title">2. Why are you quitting?</h3>
+        <h3 class="form-section-title">4. Why are you quitting?</h3>
         <p class="form-label">
           Select your personal reasons to stay motivated:
         </p>
@@ -77,7 +115,7 @@
 
       <!-- Section: Identify Your Triggers -->
       <div class="form-section">
-        <h3 class="form-section-title">3. Identify Your Triggers</h3>
+        <h3 class="form-section-title">5. Identify Your Triggers</h3>
         <p class="form-label">
           What situations, emotions, or activities make you want to smoke?
         </p>
@@ -128,7 +166,7 @@
 
       <!-- Section: Your Quitting Strategies -->
       <div class="form-section">
-        <h3 class="form-section-title">4. How Will You Do It? (Strategies)</h3>
+        <h3 class="form-section-title">6. How Will You Do It? (Strategies)</h3>
         <p class="form-label">
           Which strategies will you use to help you quit and manage cravings?
         </p>
