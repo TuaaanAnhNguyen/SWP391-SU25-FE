@@ -1,0 +1,132 @@
+<div class="page-body">
+  <main class="container main-content">
+    <h2 class="section-title">Kế Hoạch Cai Thuốc Của Tôi</h2>
+
+    <ng-container *ngIf="plan; else noPlan">
+      <div class="plan-overview-container">
+        <h3 class="plan-section-title">Tổng Quan Kế Hoạch</h3>
+        <div class="plan-detail-group">
+          <strong>Ngày Bỏ Thuốc:</strong>
+          <span>{{ plan.quitDate | date: 'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="plan-detail-group">
+          <strong>Thời Lượng Kế Hoạch:</strong>
+          <span>{{ plan.duration }} tuần</span>
+        </div>
+        <div class="plan-detail-group">
+          <strong>Số Điếu Thuốc/Ngày Trước Khi Bỏ:</strong>
+          <span>{{ plan.dailyCigarettes }}</span>
+        </div>
+        <div class="plan-detail-group">
+          <strong>Tần Suất Hút Thuốc:</strong>
+          <span>{{ plan.frequency }}</span>
+        </div>
+        <div class="plan-detail-group">
+          <strong>Loại Thuốc Lá:</strong>
+          <span>{{ plan.cigaretteType }}</span>
+        </div>
+        <div class="plan-detail-group">
+          <strong>Chi phí ước tính/bao:</strong>
+          <span>{{ plan.cigaretteCost | number }} VNĐ</span>
+        </div>
+      </div>
+
+      <!-- Get Ready to Quit Section -->
+      <div class="plan-section">
+        <h3 class="plan-section-title">Sẵn Sàng Cai Thuốc</h3>
+        <p class="plan-text-content">
+          Lập kế hoạch trước là chìa khóa để cai thuốc thành công. Hãy chuẩn bị tinh thần và môi trường xung quanh bạn.
+        </p>
+        <div class="plan-detail-group">
+          <strong>Mẹo chuẩn bị:</strong>
+        </div>
+        <ul class="plan-card-grid">
+          <li class="choice-card selected-choice">
+            <span class="choice-text">Thông báo cho bạn bè và gia đình về ngày bỏ thuốc.</span>
+          </li>
+          <li class="choice-card selected-choice">
+            <span class="choice-text">Loại bỏ tất cả thuốc lá, gạt tàn khỏi nhà và xe.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Understand Your Triggers Section -->
+      <div class="plan-section">
+        <h3 class="plan-section-title">Hiểu Rõ Các Tác Nhân Của Bạn</h3>
+        <p class="plan-text-content">
+          Nhận biết các yếu tố kích hoạt là bước đầu tiên để vượt qua chúng. Dưới đây là những tác nhân bạn đã xác định:
+        </p>
+        <div class="plan-card-grid">
+          <li class="choice-card selected-choice" *ngFor="let trigger of plan.triggers">
+            <span class="choice-text">{{ trigger }}</span>
+          </li>
+          <li class="choice-card" *ngIf="plan.otherTriggers">
+            <span class="choice-text">Tác nhân khác: {{ plan.otherTriggers }}</span>
+          </li>
+        </div>
+      </div>
+
+      <!-- Plan for Your Cravings Section -->
+      <div class="plan-section">
+        <h3 class="plan-section-title">Lên Kế Hoạch Cho Cơn Thèm Thuốc</h3>
+        <p class="plan-text-content">
+          Cơn thèm sẽ xuất hiện, nhưng bạn đã có những chiến lược để đối phó.
+        </p>
+        <div class="plan-card-grid">
+          <li class="choice-card selected-choice" *ngFor="let strategy of plan.strategies">
+            <span class="choice-text">{{ strategy }}</span>
+          </li>
+          <li class="choice-card" *ngIf="plan.otherStrategies">
+            <span class="choice-text">Chiến lược khác: {{ plan.otherStrategies }}</span>
+          </li>
+        </div>
+      </div>
+
+      <!-- Build Your Support Team Section -->
+      <div class="plan-section">
+        <h3 class="plan-section-title">Xây Dựng Đội Ngũ Hỗ Trợ Của Bạn</h3>
+        <p class="plan-text-content">
+          Sự hỗ trợ từ những người xung quanh sẽ giúp bạn vững vàng hơn trong hành trình này.
+        </p>
+        <div class="plan-card-grid">
+          <li class="choice-card selected-choice">
+            <span class="choice-text">Tham gia nhóm hỗ trợ/cộng đồng</span>
+          </li>
+          <li class="choice-card">
+            <span class="choice-text">Nhờ bạn bè/gia đình giúp đỡ</span>
+          </li>
+          <li class="choice-card selected-choice">
+            <span class="choice-text">Kết nối với Huấn luyện viên (Chỉ dành cho VIP)</span>
+          </li>
+        </div>
+      </div>
+
+      <!-- Remember Yourself Why You Want to Quit Section -->
+      <div class="plan-section">
+        <h3 class="plan-section-title">Nhớ Lý Do Bạn Muốn Cai Thuốc</h3>
+        <p class="plan-text-content">
+          Giữ vững những lý do này trong tâm trí bạn sẽ giúp bạn vượt qua những khoảnh khắc khó khăn.
+        </p>
+        <div class="plan-card-grid">
+          <li class="choice-card selected-choice" *ngFor="let reason of plan.reasons">
+            <span class="choice-text">{{ reason }}</span>
+          </li>
+          <li class="choice-card" *ngIf="plan.otherReasons">
+            <span class="choice-text">Lý do khác: {{ plan.otherReasons }}</span>
+          </li>
+        </div>
+      </div>
+
+      <div class="edit-plan-cta">
+        <a [routerLink]="['/quit-plan']" class="button-primary">Chỉnh Sửa Kế Hoạch</a>
+      </div>
+    </ng-container>
+
+    <ng-template #noPlan>
+      <div class="plan-section">
+        <h3 class="plan-section-title">Chưa có kế hoạch</h3>
+        <p>Bạn chưa tạo kế hoạch cai thuốc. <a [routerLink]="['/quit-plan']">Tạo kế hoạch ngay</a>.</p>
+      </div>
+    </ng-template>
+  </main>
+</div>

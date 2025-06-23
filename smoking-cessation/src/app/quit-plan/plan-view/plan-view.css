@@ -1,0 +1,167 @@
+.page-body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(100deg, #f7f3dc, #f6efc8);
+    color: #374151;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 75rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    margin-top: auto;
+    font-weight: 700;
+    color: #1A1A1A;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.plan-overview-container,
+.plan-section {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 2.5rem;
+    max-width: 50rem;
+    margin: 0 auto 2rem auto;
+}
+
+.plan-section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #D4AF37;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #F0D8A8;
+}
+
+.plan-detail-group {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #374151;
+}
+
+.plan-detail-group strong {
+    color: #1A1A1A;
+    flex-shrink: 0;
+}
+
+.plan-detail-group span {
+    flex-grow: 1;
+}
+
+.plan-detail-group .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #A98A2A;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+.plan-card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+    .plan-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.choice-card.selected-choice {
+    background-color: #D4AF37;
+    border-color: #1A1A1A;
+    box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.choice-card.selected-choice .choice-text {
+    color: #1A1A1A;
+    font-weight: 500;
+}
+
+.choice-card.selected-choice .checkmark-icon {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #1A1A1A;
+    flex-shrink: 0;
+}
+
+.plan-text-content {
+    color: #4B5563;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.edit-plan-cta {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.button-primary {
+    background: linear-gradient(45deg,
+            rgb(212, 175, 55) 5%,
+            rgb(222, 188, 91) 10%,
+            rgb(231, 201, 124) 30%,
+            rgb(239, 214, 157) 50%,
+            rgb(231, 201, 124) 70%,
+            rgb(222, 188, 91) 80%,
+            rgb(212, 175, 55) 95%);
+    color: #1A1A1A;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease;
+    border: 1px solid #4d4c4b;
+    cursor: pointer;
+}
+
+.button-primary:hover {
+    transform: translateY(-3px);
+}
+
+.button-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #D4AF37, 0 0 0 4px #1A1A1A;
+}
+
+.text-link {
+    color: #D4AF37;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.text-link:hover {
+    color: #A98A2A;
+}

@@ -9,6 +9,8 @@ export const routes: Routes = [
   { path: 'post/:id', loadComponent: () => import('./blog-detail/blog-detail').then(m => m.BlogDetail) },
   { path: 'profile-page', loadComponent: () => import('./profile-page/profile-page').then(m => m.ProfilePage) },
   { path: 'quit-plan', loadComponent: () => import('./quit-plan/quit-plan').then(m => m.QuitPlan) },
+  { path: 'plan-view', loadComponent: () => import('./quit-plan/plan-view/plan-view').then(m => m.PlanView) },
+
   { 
     path: 'admin-dashboard', 
     loadComponent: () => import('./admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quit-plan',
@@ -12,6 +13,9 @@ export class QuitPlan {
   quitPlanForm: FormGroup;
   quitDateWarning: string = '';
   todayString: string;
+
+  private router = inject(Router);
+
 
   reasonsList = [
     { id: 'reason-health', value: 'Improved Health', label: 'Improved Health' },
@@ -114,6 +118,11 @@ export class QuitPlan {
     const today = new Date();
     this.todayString = today.toISOString().split('T')[0];
 
+    const savedPlan = localStorage.getItem('quitPlan');
+    if (savedPlan) {
+      this.quitPlanForm.patchValue(JSON.parse(savedPlan));
+    }
+
     this.quitPlanForm.get('quitDate')?.valueChanges.subscribe(() => {
       this.validateQuitDate();
     });
@@ -165,6 +174,8 @@ export class QuitPlan {
 
     const planData = this.quitPlanForm.value;
     console.log('Your Personalized Quit Plan Data: ', planData);
+    localStorage.setItem('quitPlan', JSON.stringify(planData));
     alert('Testing! Your personalized quit plan has been saved!');
+    this.router.navigate(['/plan-view']);
   }
 }
