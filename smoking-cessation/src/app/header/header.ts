@@ -14,24 +14,23 @@ export class Header {
 
   constructor(public authService: AuthService) {}
 
-  /**
-  get isLoggedIn(): boolean {
+  get currentUser() {
     const userStr = localStorage.getItem('currentUser');
-    if (!userStr) return false;
+    if (!userStr) return null;
     try {
-      const user = JSON.parse(userStr);
-      return !!user && typeof user === 'object' && Object.keys(user).length > 0;
+      return JSON.parse(userStr);
     } catch {
-      return false;
+      return null;
     }
   }
 
-  get isAdmin(): boolean {
-    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
-    return !!user && user.role === 'admin';
-  } 
-    */
+  get isLoggedIn(): boolean {
+    return !!this.currentUser;
+  }
 
+  get userRole(): string | null {
+    return this.currentUser?.role || null;
+  }
 
   logout(event: Event) {
     event.preventDefault();

@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { QuitPlanService } from '../services/quit-plan.service';
 
 @Component({
   selector: 'app-quit-plan',
@@ -9,13 +15,14 @@ import { Router } from '@angular/router';
   templateUrl: './quit-plan.html',
   styleUrl: './quit-plan.css',
 })
-export class QuitPlan {
+export class QuitPlan implements OnInit {
   quitPlanForm: FormGroup;
   quitDateWarning: string = '';
   todayString: string;
+  isGuest: boolean = false;
 
   private router = inject(Router);
-
+  private quitPlanService = inject(QuitPlanService);
 
   reasonsList = [
     { id: 'reason-health', value: 'Improved Health', label: 'Improved Health' },
@@ -101,12 +108,23 @@ export class QuitPlan {
 
   constructor(private fb: FormBuilder) {
     this.quitPlanForm = this.fb.group({
-      quitDate: [''],
-      duration: [''],
-      dailyCigarettes: [''],
-      frequency: [''],
-      cigaretteType: [''],
-      cigaretteCost: [''],
+      quitDate: ['', Validators.required],
+      duration: ['', Validators.required],
+      dailyCigarettes: [
+        '',
+        [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)],
+      ],
+      frequency: ['', Validators.required],
+      cigaretteType: ['', Validators.required],
+      cigaretteCost: [
+        '',
+        [
+          Validators.required,
+          Validators.min(0),
+          Validators.pattern(/^\d{1,3}(,\d{3})*$|^\d+$/),
+        ],
+      ],
+      currency: ['VND', Validators.required],
       otherReasons: [''],
       otherTriggers: [''],
       otherStrategies: [''],
@@ -122,6 +140,54 @@ export class QuitPlan {
     if (savedPlan) {
       this.quitPlanForm.patchValue(JSON.parse(savedPlan));
     }
+
+    this.quitPlanForm.get('quitDate')?.valueChanges.subscribe(() => {
+      this.validateQuitDate();
+    });
+  }
+
+  ngOnInit() {
+    const today = new Date();
+    this.todayString = today.toISOString().split('T')[0];
+
+    this.quitPlanService.getCurrentUserPlan().subscribe({
+      next: (plan) => {
+        this.quitPlanForm.patchValue(plan);
+        this.isGuest = false;
+      },
+      error: (err) => {
+        const currentUser = localStorage.getItem('currentUser');
+        const savedPlan = localStorage.getItem('quitPlan');
+        if (currentUser && savedPlan) {
+          if (window.confirm('You have a quit plan saved in your browser from before you logged in. Would you like to save it to your account?')) {
+            const planData = JSON.parse(savedPlan);
+            this.quitPlanService.createPlan(planData).subscribe({
+              next: (response) => {
+                this.quitPlanForm.patchValue(planData);
+                alert('Your guest plan has been saved to your account!');
+                localStorage.removeItem('quitPlan');
+                this.isGuest = false;
+              },
+              error: (err) => {
+                alert('Failed to save your guest plan to your account.');
+                console.log("Error: ", err);
+                this.quitPlanForm.patchValue(planData);
+                this.isGuest = true;
+              },
+            });
+          } else {
+            this.quitPlanForm.patchValue(JSON.parse(savedPlan));
+            this.isGuest = true;
+          }
+        } else if (!currentUser && savedPlan) {
+          // Guest
+          this.quitPlanForm.patchValue(JSON.parse(savedPlan));
+          this.isGuest = true;
+        } else {
+          alert('No plan found.');
+        }
+      },
+    });
 
     this.quitPlanForm.get('quitDate')?.valueChanges.subscribe(() => {
       this.validateQuitDate();
@@ -167,15 +233,61 @@ export class QuitPlan {
     }
   }
 
+  formatCostInput() {
+    const control = this.quitPlanForm.get('cigaretteCost');
+    let value = control?.value?.replace(/,/g, '') || '';
+    if (!/^\d*$/.test(value)) {
+      value = value.replace(/\D/g, '');
+    }
+    if (value) {
+      value = Number(value).toLocaleString();
+    }
+    control?.setValue(value, { emitEvent: false });
+  }
+
   onSubmit() {
     if (!this.validateQuitDate()) {
       return;
     }
 
-    const planData = this.quitPlanForm.value;
-    console.log('Your Personalized Quit Plan Data: ', planData);
-    localStorage.setItem('quitPlan', JSON.stringify(planData));
-    alert('Testing! Your personalized quit plan has been saved!');
-    this.router.navigate(['/plan-view']);
+    const formValue = this.quitPlanForm.value;
+
+    // Map frontend fields to backend DTO
+    const planData = {
+      startDate: formValue.quitDate,
+      durationWeeks: Number(formValue.duration),
+      numberOfCigarettes: Number(formValue.dailyCigarettes),
+      pricePerPack: Number(String(formValue.cigaretteCost).replace(/,/g, '')),
+      currency: formValue.currency,
+      reasons: formValue.reasons.concat(
+        formValue.otherReasons ? [formValue.otherReasons] : []
+      ),
+      triggers: formValue.triggers.concat(
+        formValue.otherTriggers ? [formValue.otherTriggers] : []
+      ),
+      strategies: formValue.strategies.concat(
+        formValue.otherStrategies ? [formValue.otherStrategies] : []
+      ),
+      cigaretteType: formValue.cigaretteType,
+      frequency: formValue.frequency,
+    };
+
+    if (this.isGuest) {
+      localStorage.setItem('quitPlan', JSON.stringify(planData));
+      alert('Your personalized quit plan has been saved (locally)!');
+      this.router.navigate(['/plan-view']);
+    } else {
+      this.quitPlanService.createPlan(planData).subscribe({
+        next: (response) => {
+          localStorage.setItem('quitPlan', JSON.stringify(planData));
+          alert('Your personalized quit plan has been saved!');
+          this.router.navigate(['/plan-view']);
+        },
+        error: (err) => {
+          alert('Failed to save your quit plan. Please try again.');
+          console.log("Error: ", err)
+        },
+      });
+    }
   }
 }

@@ -54,3 +54,9 @@
 .nav-link:hover {
     color: #2563EB;
 }
+
+.state-logged-in {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

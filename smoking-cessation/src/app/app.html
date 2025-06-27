@@ -1,8 +1,8 @@
 <app-header *ngIf="showHeaderFooter()"></app-header>
+<app-sidebar-menu></app-sidebar-menu>
 <div *ngIf="showSidebar(); else mainContentOnly" class="app-layout">
   <div class="al-left">
     <app-sidebar></app-sidebar>
-    <app-sidebar-menu></app-sidebar-menu>
   </div>
   <div class="al-right">
     <div class="app-main-content">

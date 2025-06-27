@@ -10,7 +10,9 @@
       <div class="form-section">
         <h3 class="form-section-title">1. Set Your Quit Date</h3>
         <div class="form-group">
-          <label for="quit-date" class="form-label">When do you plan to quit?</label>
+          <label for="quit-date" class="form-label"
+            >When do you plan to quit?</label
+          >
           <input
             type="date"
             id="quit-date"
@@ -19,50 +21,101 @@
             required
             [min]="todayString"
           />
-          <div *ngIf="quitDateWarning" style="color: #b91c1c; margin-top: 0.5rem">
+          <div
+            *ngIf="quitDateWarning"
+            style="color: #b91c1c; margin-top: 0.5rem"
+          >
             {{ quitDateWarning }}
           </div>
         </div>
       </div>
 
       <!-- Section: Duration of Plan -->
-       <div class="form-section">
+      <div class="form-section">
         <h3 class="form-section-title">2. Duration of Quit Plan</h3>
         <div class="form-group">
-            <label for="duration" class="form-label">Choose the duration for the plan:</label>
-            <select id="duration" formControlName="duration" class="form-input" placeholder="Choose a duration">
-                <option value="" disabled selected>Choose a duration</option>
-                <option value="2">2 weeks</option>
-                <option value="3">3 weeks</option>
-                <option value="4">4 weeks</option>
-                <option value="5">5 weeks</option>
-                <option value="6">6 weeks <span class="preferred-label">(preferred)</span></option>
-            </select>
+          <label for="duration" class="form-label"
+            >Choose the duration for the plan:</label
+          >
+          <select
+            id="duration"
+            formControlName="duration"
+            class="form-input"
+            placeholder="Choose a duration"
+          >
+            <option value="" disabled selected>Choose a duration</option>
+            <option value="2">2 weeks</option>
+            <option value="3">3 weeks</option>
+            <option value="4">4 weeks</option>
+            <option value="5">5 weeks</option>
+            <option value="6">
+              6 weeks <span class="preferred-label">(preferred)</span>
+            </option>
+          </select>
         </div>
-       </div>
+      </div>
 
-       <!-- Section: Smoking Status -->
-        <div class="form-section">
-            <h3 class="form-section-title">3. Smoking Status</h3>
-            <div class="form-group">
-                <label for="dailyCigarettes" class="form-label">Daily amount?</label>
-                <input type="number" id="dailyCigarettes" formControlName="dailyCigarettes" class="form-input" min="0" placeholder="Enter your daily amount">
-            </div>
-            <div class="form-group">
-                <label for="frequency" class="form-label">Frequency</label>
-                <input type="text" id="frequency" formControlName="frequency" class="form-input" placeholder="Enter your smoking frequency">
-            </div>
-            <div class="form-group">
-                <label for="cigaretteType" class="form-label">Type of tobacco</label>
-                <input type="text" id="cigaretteType" formControlName="cigaretteType" class="form-input" placeholder="Enter type of tobacco">
-            </div>
-            <div class="form-group">
-                <label for="cigaretteCost" class="form-label">Cost of each pack</label>
-                <input type="number" id="cigaretteCost" formControlName="cigaretteCost" class="form-input" min="0" placeholder="Cost of each pack of tobacco">
-            </div>
+      <!-- Section: Smoking Status -->
+      <div class="form-section">
+        <h3 class="form-section-title">3. Smoking Status</h3>
+        <div class="form-group">
+          <label for="dailyCigarettes" class="form-label"
+            >Average amount in a day</label
+          >
+          <input
+            type="number"
+            id="dailyCigarettes"
+            formControlName="dailyCigarettes"
+            class="form-input"
+            min="0"
+            placeholder="Enter your daily amount"
+          />
+        </div>
+        <div class="form-group">
+          <label for="frequency" class="form-label">Frequency</label>
+          <!-- paint, please finish this paint, make it into a option box, paint, please save the SWP391 society -->
+        </div>
+        <div class="form-group">
+          <label for="cigaretteType" class="form-label">Type of tobacco</label>
+          <input
+            type="text"
+            id="cigaretteType"
+            formControlName="cigaretteType"
+            class="form-input"
+            placeholder="Enter type of tobacco"
+          />
+        </div>
+        <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem">
+          <label for="cigaretteCost" class="form-label">Cost of each pack</label>
+          <input
+            type="text"
+            id="cigaretteCost"
+            formControlName="cigaretteCost"
+            class="form-input"
+            min="0"
+            placeholder="Cost of each pack of tobacco"
+            style="flex: 2 1 0;"
+            (input)="formatCostInput()"
+            autocomplete="off"
+          />
+          <select
+            formControlName="currency"
+            class="form-input"
+            style="width: 80px; flex: 0 0 80px"
+          >
+            <option value="VND">VND</option>
+            <option value="USD">USD</option>
+          </select>  
         </div>
 
-      <!-- Section: Your Reasons for Quitting -->
+        <div *ngIf="quitPlanForm.get('cigaretteCost')?.invalid && quitPlanForm.get('cigaretteCost')?.touched" style="color: #b91c1c; font-size: 0.95em;">
+          <span *ngIf="quitPlanForm.get('cigaretteCost')?.errors?.['required']">Required</span>
+          <span *ngIf="quitPlanForm.get('cigaretteCost')?.errors?.['pattern']">Enter a number</span>
+          <span *ngIf="quitPlanForm.get('cigaretteCost')?.errors?.['min']">Enter a number greater than 1.</span>
+        </div>
+      </div>
+
+      <!-- Section: Reasons for Quitting -->
       <div class="form-section">
         <h3 class="form-section-title">4. Why are you quitting?</h3>
         <p class="form-label">
@@ -113,7 +166,7 @@
         </div>
       </div>
 
-      <!-- Section: Identify Your Triggers -->
+      <!-- Section: Identify Triggers -->
       <div class="form-section">
         <h3 class="form-section-title">5. Identify Your Triggers</h3>
         <p class="form-label">
@@ -164,7 +217,7 @@
         </div>
       </div>
 
-      <!-- Section: Your Quitting Strategies -->
+      <!-- Section: Quitting Strategies -->
       <div class="form-section">
         <h3 class="form-section-title">6. How Will You Do It? (Strategies)</h3>
         <p class="form-label">
