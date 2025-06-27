@@ -190,10 +190,17 @@ export class BlogDetail implements OnInit {
   ];
 
   constructor(private route: ActivatedRoute) {}
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.postId = Number(params.get('id'));
+      // Lấy bài viết mặc định
       this.postData = this.posts.find(post => post.id === this.postId);
+      // Nếu không có, tìm trong localStorage
+      if (!this.postData) {
+        const userBlogs = JSON.parse(localStorage.getItem('blogs') || '[]');
+        this.postData = userBlogs.find((post: any) => post.id === this.postId);
+      }
     });
   }
 }

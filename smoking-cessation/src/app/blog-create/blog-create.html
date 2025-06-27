@@ -1,0 +1,16 @@
+<h2>Add New Blog</h2>
+<form (ngSubmit)="onSubmit()" #blogForm="ngForm">
+  <input [(ngModel)]="blog.title" name="title" placeholder="Title" required />
+  <br />
+  <textarea [(ngModel)]="blog.content" name="content" placeholder="Content" required></textarea>
+  <br />
+  <input [(ngModel)]="blog.image" name="image" placeholder="Image URL" />
+  <br />
+  <input [(ngModel)]="blog.author" name="author" placeholder="Author" required />
+  <br />
+  <input [(ngModel)]="blog.date" name="date" placeholder="Date" required />
+  <br />
+  <input [(ngModel)]="blog.category" name="category" placeholder="Category" required />
+  <br />
+  <button type="submit">Add Blog</button>
+</form>
