@@ -11,3 +11,7 @@
   </div>
   <a [routerLink]="['/blog']" class="post-back">← Back to Blog List</a>
 </div>
+<h2>{{ postData.title }}</h2>
+<p><img [src]="postData.image" alt="" *ngIf="postData.image"></p>
+<p><strong>Author:</strong> {{ postData.author }} | <strong>Date:</strong> {{ postData.date }} | <strong>Category:</strong> {{ postData.category }}</p>
+<div [innerHTML]="postData.content"></div>

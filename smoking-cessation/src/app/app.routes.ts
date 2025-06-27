@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'profile-page', loadComponent: () => import('./profile-page/profile-page').then(m => m.ProfilePage) },
   { path: 'quit-plan', loadComponent: () => import('./quit-plan/quit-plan').then(m => m.QuitPlan) },
   { path: 'plan-view', loadComponent: () => import('./quit-plan/plan-view/plan-view').then(m => m.PlanView) },
-
+  { path: 'blog-create', loadComponent: () => import('./blog-create/blog-create').then(m => m.BlogCreate) },
   { 
     path: 'admin-dashboard', 
     loadComponent: () => import('./admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),
@@ -33,6 +33,7 @@ export const routes: Routes = [
       }
     ],
   },
+  { path: 'blog-create', loadComponent: () => import('./blog-create/blog-create').then(m => m.BlogCreate) },
   { path: '', redirectTo: '/homepage', pathMatch: 'full' }
 ];
 
